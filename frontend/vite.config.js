@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd()); // ✅ 根据 --mode 自动加载正确的 .env 文件
 
    // Define the allowed domain based on the CNAME provided by Elest.io
-  const allowedHost = 'lemonaiphinneas-u27640.vm.elestio.app'; // Your specific CNAME
+  const allowedHost = '152.53.202.251'; // Your specific CNAME
 
   return {
   root: __dirname,
