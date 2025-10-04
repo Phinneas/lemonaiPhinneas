@@ -9,6 +9,9 @@ import svgLoader from 'vite-svg-loader';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd()); // ✅ 根据 --mode 自动加载正确的 .env 文件
 
+   // Define the allowed domain based on the CNAME provided by Elest.io
+  const allowedHost = 'lemonaiphinneas-u27640.vm.elestio.app'; // Your specific CNAME
+
   return {
   root: __dirname,
   // 根据环境变量 VITE_IS_CLIENT 决定使用哪个 base 
@@ -38,6 +41,11 @@ export default defineConfig(({ mode }) => {
     port: env.VITE_PORT || 5005,
     host: '0.0.0.0',
     strictPort: true,
+    // 👇 CRITICAL FIX: Allowing the Elest.io hostname to access the server
+    allowedHosts: [
+      allowedHost,       // Your specific domain
+      '.vm.elestio.app'  // Wildcard for any subdomains under the Elest.io VM network
+    ],
     proxy: {
       '/api': {
         target: env.VITE_SERVICE_URL || 'http://127.0.0.1:3000',
