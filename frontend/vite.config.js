@@ -44,7 +44,7 @@ export default defineConfig(({ mode }) => {
     // 👇 CRITICAL FIX: Allowing the Elest.io hostname to access the server
     allowedHosts: [
       allowedHost,       // Your specific domain
-      '.vm.elestio.app'  // Wildcard for any subdomains under the Elest.io VM network
+      'true'  // Wildcard for any subdomains under the Elest.io VM network
     ],
     proxy: {
       '/api': {
